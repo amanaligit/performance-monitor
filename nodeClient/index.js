@@ -24,6 +24,11 @@ socket.on('connect', () => {
     let macA;
     //loop through all the nI for this machine and find a non-internal one;
     for (let key in nI) {
+        // for testing purposes
+        // macA = Math.floor(Math.random() * 3) + 1;
+        // break;
+
+        //for production
         if (!nI[key][0].internal) {
             macA = nI[key][0].mac;
             break;
@@ -37,7 +42,10 @@ socket.on('connect', () => {
 
 
     let perfDataInterval = setInterval(() => {
-        performanceData().then(perf => socket.emit('perfData', perf));
+        performanceData().then(perf => {
+            perf.macA = macA;
+            socket.emit('perfData', perf)
+        });
     }, 1000)
 
     socket.on('disconnect', () => {
@@ -60,6 +68,7 @@ function performanceData() {
         const numCores = cpus.length;
         const cpuLoad = await getCpuLoad();
         const cpuSpeed = cpus[0].speed;
+        const isActive = true;
         resolve({
             osType,
             upTime,
@@ -70,7 +79,8 @@ function performanceData() {
             cpuModel,
             numCores,
             cpuLoad,
-            cpuSpeed
+            cpuSpeed,
+            isActive
         })
     })
 }

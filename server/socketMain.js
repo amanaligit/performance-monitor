@@ -5,6 +5,7 @@ const Machine = require("./models/Machine");
 
 
 function socketMain(io, socket) {
+    let macA;
     console.log("Socket connected with ID: ", socket.id);
 
     socket.on('clientAuth', key => {
@@ -13,6 +14,13 @@ function socketMain(io, socket) {
         }
         else if (key === 'askgjhasdfil935871893') {
             socket.join('ui');
+            console.log('someone joined ui');
+            Machine.find({}, (err, docs) => {
+                docs.forEach(m => {
+                    m.isActive = false;
+                    io.to('ui').emit('data', m);
+                })
+            })
         }
         else {
             //an invalid client has joined. GoodBye
@@ -20,17 +28,26 @@ function socketMain(io, socket) {
         }
     })
 
+    socket.on('disconnect', () => {
+        Machine.find({ macA: macA }, (err, docs) => {
+            if (docs.length) {
+                docs[0].isActive = false;
+                io.to('ui').emit('data', docs[0]);
+            }
+        })
+    })
+
     //if machine is new, add it to the database
     socket.on('initPerfData', async data => {
-        // console.log(data);
-        checkAndAdd(data);
+        macA = data.macA
         const mongooseResponse = await checkAndAdd(data);
         console.log(mongooseResponse);
     })
 
 
     socket.on('perfData', data => {
-        // console.log(data);
+        console.log(data);
+        io.to('ui').emit('data', data);
     })
 
 }
