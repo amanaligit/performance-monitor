@@ -13,7 +13,7 @@ a scalable machine performance monitoring solution for networks using Node.js
 
 **MongoDB** is used to persist the machine data.
 
-#install:
+# install:
 1. from /server run npm/yarn install then npm start
 2. from /nodeClient run npm/yarn install then  node index.js
 3. go to localhost:8181 on browser.
