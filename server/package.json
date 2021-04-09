@@ -2,20 +2,29 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "servers.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon servers.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Aman Ali",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "farmhash": "^3.2.1",
     "helmet": "^4.4.1",
     "mongoose": "^5.12.3",
+    "redis": "^3.1.0",
+    "redis-url": "^1.2.1",
     "socket.io": "^4.0.1",
-    "socket.io-redis": "^6.1.0"
+    "socket.io-redis": "^6.1.0",
+    "string-hash-64": "^1.0.3",
+    "socket.io-client": "^4.0.1"
+  },
+  "engines": {
+    "node": "14.15.3",
+    "npm": "6.14.9"
   }
 }

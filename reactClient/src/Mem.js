@@ -3,7 +3,7 @@ import drawCircle from './utilities/canvasLoadAnimation'
 
 
 function Mem(props) {
-    const { totalMem, usedMem, freeMem, memUsage, memWidgetId } = props.memData;
+    const { totalMem, freeMem, memUsage, memWidgetId } = props.memData;
     const canvas = document.getElementById(`${memWidgetId}`);
     drawCircle(canvas, memUsage * 100);
     return (

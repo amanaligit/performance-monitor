@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/perfData', { useNewUrlParser: true, useUnifiedTopology: true });
+require('dotenv').config();
+const uri = process.env.DATABASE_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Machine = require("./models/Machine");
 
@@ -14,7 +16,6 @@ function socketMain(io, socket) {
         }
         else if (key === 'askgjhasdfil935871893') {
             socket.join('ui');
-            console.log('someone joined ui');
             Machine.find({}, (err, docs) => {
                 docs.forEach(m => {
                     m.isActive = false;
@@ -46,7 +47,6 @@ function socketMain(io, socket) {
 
 
     socket.on('perfData', data => {
-        console.log(data);
         io.to('ui').emit('data', data);
     })
 

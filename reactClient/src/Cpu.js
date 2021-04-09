@@ -3,7 +3,6 @@ import drawCircle from './utilities/canvasLoadAnimation'
 
 function Cpu(props) {
     const canvas = document.getElementById(`${props.cpuData.cpuWidgetId}`);
-    console.log(props.cpuData)
     drawCircle(canvas, props.cpuData.cpuLoad)
 
     return (

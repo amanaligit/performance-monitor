@@ -1,3 +1,5 @@
+//perf data of this server!
+
 //Node program that captures performance data of the machine
 //it sends the data to the server running socker.io
 

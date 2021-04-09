@@ -30,7 +30,6 @@ function Widget(props) {
     const cpuWidgetId = `cpu-widget-${macA}`;
     const memWidgetId = `mem-widget-${macA}`;
 
-    // console.log(cpuSpeed)
     return (
         <>
             <div className="widget col-sm-12">

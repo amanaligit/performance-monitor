@@ -7,8 +7,6 @@ function App(props) {
 
   const [performanceData, setPerformanceData] = useState({});
 
-
-
   useEffect(() => {
     //update the state
     socket.on('data', data => {
